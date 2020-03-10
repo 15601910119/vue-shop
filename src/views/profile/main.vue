@@ -32,10 +32,10 @@
                 <router-link :to="{name: `user-address`}">收货地址</router-link>
               </el-menu-item>
               <el-menu-item index="1-2">
-                <router-link to="/profile/indent">我的订单</router-link>
+                <router-link to="/view/profile/indent">我的订单</router-link>
               </el-menu-item>
               <el-menu-item index="1-3">
-                <router-link to="/profile/message">我的留言</router-link>
+                <router-link to="/view/profile/message">我的留言</router-link>
               </el-menu-item>
             </el-menu>
           </el-card>
@@ -87,8 +87,7 @@ export default {
     color: #3dca79;
   }
   .common-container {
-    margin: 120px auto;
-    margin-top: 50px;
+    padding-top: 50px;
     .siderbar {
       .el-card {
         margin-bottom: 15px;

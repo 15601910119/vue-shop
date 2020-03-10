@@ -1,82 +1,72 @@
 <template>
-  <div class="sign-up">
-    <breadcrumb
-      :routes="routes"
-      :title="title"
-    ></breadcrumb>
-    <login-sign-up>
-      <div class="title">
-        <h2>注册</h2>
-      </div>
-      <el-form
-        :model="form"
-        :rules="rules"
-        label-position="top"
-        ref="form"
-        status-icon
+  <login-sign-up>
+    <el-form
+      :model="form"
+      :rules="rules"
+      label-position="top"
+      ref="form"
+      status-icon
+    >
+      <el-form-item
+        label="用户名"
+        prop="username"
       >
-        <el-form-item
-          label="用户名"
-          prop="username"
-        >
-          <el-input
-            placeholder="用户名为字母和数字组合"
-            v-model="form.username"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="密码"
-          prop="password"
-        >
-          <el-input
-            placeholder="请输入密码"
-            show-password
-            type="password"
-            v-model="form.password"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="确认密码"
-          prop="aginword"
-        >
-          <el-input
-            placeholder="确认密码"
-            show-password
-            type="aginword"
-            v-model="form.aginword"
-          ></el-input>
-        </el-form-item>
+        <el-input
+          placeholder="用户名为字母和数字组合"
+          v-model="form.username"
+        ></el-input>
+      </el-form-item>
+      <el-form-item
+        label="密码"
+        prop="password"
+      >
+        <el-input
+          placeholder="请输入密码"
+          show-password
+          type="password"
+          v-model="form.password"
+        ></el-input>
+      </el-form-item>
+      <el-form-item
+        label="确认密码"
+        prop="aginword"
+      >
+        <el-input
+          placeholder="确认密码"
+          show-password
+          type="aginword"
+          v-model="form.aginword"
+        ></el-input>
+      </el-form-item>
 
-        <el-form-item>
-          <div class="sign">
-            <span>你有账号吗？</span>
-            <router-link to="/view/login">登录</router-link>
-          </div>
-        </el-form-item>
-        <el-form-item class="btn-group">
-          <el-button
-            @click="onReset"
-            class="btn-reset"
-          >重置</el-button>
-          <el-button
-            :loading="submitLoading"
-            @click="submit"
-            class="btn-login"
-          >注册</el-button>
-        </el-form-item>
-      </el-form>
-    </login-sign-up>
-  </div>
+      <el-form-item>
+        <div class="sign">
+          <span>你有账号吗？</span>
+          <router-link to="/view/login">登录</router-link>
+        </div>
+      </el-form-item>
+      <el-form-item class="btn-group">
+        <el-button
+          @click="onReset"
+          class="btn-reset"
+        >重置</el-button>
+        <el-button
+          :loading="submitLoading"
+          @click="submit"
+          class="btn-login"
+        >注册</el-button>
+      </el-form-item>
+    </el-form>
+  </login-sign-up>
 </template>
 <script>
 import LoginSignUp from '@/components/login-sign-up';
-import Breadcrumb from '@/components/breadcrumb';
+
 import apis from '@/store/network/apis';
 
 export default {
   components: {
-    'login-sign-up': LoginSignUp,
-    breadcrumb: Breadcrumb
+    'login-sign-up': LoginSignUp
   },
   data() {
     return {
@@ -110,11 +100,14 @@ export default {
                 callback('必须由数字和字母组成');
                 return;
               } else {
-                apis.checkName({username: value}).then(resp => {
-                  callback();
-                }).catch(resp => {
-                  callback(resp.error);
-                });
+                apis
+                  .checkName({ username: value })
+                  .then(resp => {
+                    callback();
+                  })
+                  .catch(resp => {
+                    callback(resp.error);
+                  });
               }
             },
             trigger: 'blur'
@@ -177,8 +170,7 @@ export default {
             password: this.form.password
           };
           apis.signUp(data).then(resp => {
-              this.$message.success('注册成功');
-
+            this.$message.success('注册成功');
           });
         }
       });

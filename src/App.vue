@@ -7,7 +7,7 @@
 
 <script>
 import Nav from '@/components/nav/main';
-import Footer from '@/components/footer'
+import Footer from '@/components/footer';
 export default {
   components: {
     'app-nav': Nav,
@@ -17,10 +17,21 @@ export default {
     this.$store.dispatch(`query-user-info`);
     this.$store.dispatch(`get-cart-info`);
   }
-}
+};
 </script>
-<style>
-html, body, ul, ol, li, p, h1, h2, h3, h4, h5, h6 {
+<style lang="less">
+html,
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
 }
@@ -28,15 +39,33 @@ a {
   text-decoration: none;
   color: black;
 }
-ul,li {
+ul,
+li {
   list-style: none;
 }
 body {
-  font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  padding-top: 80px;
+  font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB',
+    'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 }
-.el-button:active, .el-button:focus {
+.el-button:active,
+.el-button:focus {
   outline: none;
 }
-
+#app {
+  * {
+    box-sizing: border-box;
+  }
+  padding-top: 80px;
+  box-sizing: border-box;
+  .route {
+    & > :first-child {
+      min-height: calc(100vh - 80px);
+      padding-bottom: 594px;
+    }
+    .footer {
+      margin-top: -594px;
+      height: 594px;
+    }
+  }
+}
 </style>

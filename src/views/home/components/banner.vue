@@ -5,6 +5,7 @@
       :autoplay="true"
       height="100%"
       arrow="never"
+      trigger="click"
       :interval="7000"
       @change="onChange($event)"
     >
@@ -41,7 +42,7 @@ $.fn.autotype = function() {
   $text.height($text.height());
 
   clearInterval(timer);
-  
+
   timer = setInterval(function() {
     var current = str.substr(index, 1);
 

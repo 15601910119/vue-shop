@@ -1,38 +1,43 @@
 <template>
-  <div class="common-container login-sign-up">
-    <div class="flex-center">
-      <el-col
-        :span="14"
-        class="container-img"
-      ></el-col>
-      <el-col
-        :span="10"
-        class="container-login"
-      >
-        <slot></slot>
-      </el-col>
+  <div class="login-sign">
+    <div class="form-container">
+      <div class="common-container">
+        <el-card class="container-login">
+          <slot></slot>
+        </el-card>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
+import apis from '@/store/network/apis';
+
 export default {};
 </script>
 
 <style lang="less">
-.login-sign-up {
-  margin: 120px auto;
-  .container-login {
-    padding: 120px 30px;
-    box-shadow: 0px 0px 30px #2926330d;
-    height: 100%;
-    .title {
-      h2 {
-        margin-bottom: 15px;
-        font-size: 45px;
-        line-height: 1.4;
-      }
+.login-sign {
+  background-image: url('../components/login.jpg');
+  .form-container {
+    position: relative;
+    padding-top: 50%;
+    .common-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
+  }
+
+  .container-login {
+    width: 500px;
+    box-shadow: 0px 0px 30px #2926330d;
+
     label {
       font-weight: 600;
       font-size: 16px;
@@ -62,13 +67,5 @@ export default {};
       }
     }
   }
-  .flex-center {
-    align-items: stretch;
-  }
-}
-.container-img {
-  background-size: cover;
-  background-position: center;
-  background-image: url('http://assets.xvivx.online/static/log-in.png');
 }
 </style>

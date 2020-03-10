@@ -29,7 +29,7 @@ const routes = [
               )
           },
           {
-            path: 'view/message',
+            path: 'message',
             name: 'message',
             component: () =>
               import(
@@ -37,7 +37,7 @@ const routes = [
               )
           },
           {
-            path: 'view/edit-info',
+            path: 'edit-info',
             name: `edit-info`,
             component: () =>
               import(
@@ -45,7 +45,7 @@ const routes = [
               )
           },
           {
-            path: 'view/user-address',
+            path: 'user-address',
             name: `user-address`,
             component: () =>
               import(
@@ -53,7 +53,7 @@ const routes = [
               )
           },
           {
-            path: 'view/indent',
+            path: 'indent',
             name: `indent`,
             component: () =>
               import(

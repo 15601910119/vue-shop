@@ -2,7 +2,10 @@
   <el-card class="app-nav">
     <div class="common-container">
       <a href="/">
-        <img class="logo" src="http://assets.xvivx.online/static/logo.png">
+        <img
+          class="logo"
+          src="http://assets.xvivx.online/static/logo.png"
+        >
       </a>
       <div class="navs">
         <router-link
@@ -89,10 +92,14 @@ export default {
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: white;
+  &.el-card {
+    border-radius: 0;
+  }
+
   & > .el-card__body {
     padding: 0;
   }
+
   .logo {
     height: 60px;
   }
