@@ -5,23 +5,49 @@
       :height="'500px'"
     ></banner>
     <div class="select">
-      <el-button
-        @click="onAddBanner"
-        type="primary"
-      >添加BANNER</el-button>
-      <span>编辑图片</span>
-      <el-select
-        @change="onBannerChange"
-        placeholder="请选择"
-        v-model="value"
-      >
-        <el-option
-          :key="index"
-          :label="'第' + (index + 1) + '张'"
-          :value="index"
-          v-for="(item, index) in banners"
-        ></el-option>
-      </el-select>
+      <el-form label-width="100px">
+        <el-row>
+          <el-col :span="8">
+            <el-form-item label="删除图片">
+              <el-select
+                @change="onBannerChange"
+                placeholder="请选择"
+                v-model="value"
+              >
+                <el-option
+                  :key="index"
+                  :label="'第' + (index + 1) + '张'"
+                  :value="index"
+                  v-for="(item, index) in banners"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="编辑图片">
+              <el-select
+                @change="onBannerChange"
+                placeholder="请选择"
+                v-model="value"
+              >
+                <el-option
+                  :key="index"
+                  :label="'第' + (index + 1) + '张'"
+                  :value="index"
+                  v-for="(item, index) in banners"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="8">
+            <el-button
+              @click="onAddBanner"
+              type="primary"
+            >添加BANNER</el-button>
+          </el-col>
+        </el-row>
+      </el-form>
     </div>
     <el-dialog
       :title="title"
@@ -58,10 +84,12 @@
           label="图片状态"
           prop="status"
         >
-          <el-radio-group v-model="form.status" @change="onChangeStatus">
-    <el-radio :label="1">显示</el-radio>
-    <el-radio :label="2">不显示</el-radio>
-  </el-radio-group>
+          <el-radio-group
+            v-model="form.status"
+          >
+            <el-radio label="on">显示</el-radio>
+            <el-radio label="off">不显示</el-radio>
+          </el-radio-group>
         </el-form-item>
         <el-form-item
           label="按钮文字"
@@ -146,7 +174,7 @@ export default {
         file: '',
         btntext: '',
         link: '',
-        status: ''
+        status: 'on'
       },
       rules: {
         title: [
@@ -187,19 +215,19 @@ export default {
             text: this.banners[i].text,
             file: this.banners[i].image,
             btntext: this.banners[i].btntext,
-            link: this.banners[i].link
+            link: this.banners[i].link,
+            status: this.banners[i].status
           };
         }
       }
     },
-    onChangeStatus(value) {
-      console.log(this.form.status);
-    },
+
     onAddBanner() {
       this.title = '添加banner';
       this.visible = true;
       this.form = {
-        file: ''
+        file: '',
+        status: 'on'
       };
     },
     async onSubimt() {
@@ -246,10 +274,6 @@ export default {
         formData.append(`btntext`, this.form.btntext);
       }
 
-       if (this.form.status) {
-        formData.append(`status`, this.form.status);
-      }
-
       if (this.form.file && this.form.file.raw) {
         formData.append(`file`, this.form.file.raw);
       }
@@ -262,11 +286,7 @@ export default {
 <style lang="less">
 .banners {
   .select {
-    text-align: right;
-    margin: 20px 0;
-    span {
-      margin: 0 10px;
-    }
+    margin-top: 30px;
   }
   .el-upload {
     display: flex;

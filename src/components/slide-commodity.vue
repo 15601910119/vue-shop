@@ -91,7 +91,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: url(../assets/product/offer-bg.png) no-repeat;
+    background: url(http://assets.xvivx.online/static/offer-bg.png) no-repeat;
     width: 53px;
     height: 53px;
     color: white;

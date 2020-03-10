@@ -54,7 +54,7 @@ export default {
   },
   name: 'home',
   mounted() {
-    apis.queryBnner().then(resp => {
+    apis.queryBnner({status: 'on'}).then(resp => {
       this.banners = resp.data;
     });
     // apis.queryHot1().then(resp => {

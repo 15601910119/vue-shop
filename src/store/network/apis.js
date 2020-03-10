@@ -7,9 +7,10 @@ if (process.env.NODE_ENV === `development`) {
 }
 
 export default {
-  queryBnner() {
+  queryBnner(params) {
     return request({
       url: `${domain}/banner/get`,
+      params: params
     });
   },
   querySpecials() {
