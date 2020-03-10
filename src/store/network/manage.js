@@ -137,4 +137,11 @@ export default {
       processData: false
     })
   },
+  deleteBanner(data) {
+    return request({
+      url: `${domain}/banner/del`,
+      data: data,
+      type: 'post',
+    })
+  },
 };

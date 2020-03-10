@@ -1,67 +1,83 @@
 <template>
-  <el-carousel
-    :autoplay="true"
-    :height="height"
-    trigger="click"
-    arrow="never"
-  >
-    <el-carousel-item
-      :key="banner.image"
-      v-for="banner in banners"
+  <div class="banner-container" :style="{ 'padding-top': height }">
+    <el-carousel
+      ref="carousel"
+      :autoplay="false"
+      height="100%"
+      trigger="click"
+      arrow="never"
+      :interval="7000"
     >
-      <div
-        :style="{'background-image': 'url('+ banner.image + ')'}"
-        class="banner-wrapper"
-      >
-        <aside class="common-container">
-          <h1>{{banner.title}}</h1>
-          <pre>{{banner.text}}</pre>
-          <el-button type="success" @click="$router.push(banner.link)">{{banner.btntext}}</el-button>
-        </aside>
-      </div>
-    </el-carousel-item>
-  </el-carousel>
+      <el-carousel-item :key="banner.id" v-for="banner in banners">
+        <div
+          :style="{
+            'background-image': 'url(' + banner.image + ')',
+            'background-color': banner.bgcolor
+          }"
+          class="banner-item"
+        >
+          <aside class="common-container">
+            <h1>{{ banner.title }}</h1>
+            <pre>{{ banner.text }}</pre>
+            <el-button type="success" @click="$router.push(banner.link)">{{
+              banner.btntext
+            }}</el-button>
+          </aside>
+        </div>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     banners: Array,
-    height: String
+    height: {
+      type: String,
+      default: `25%`
+    }
   }
 };
 </script>
 
 <style lang="less">
-.banner-wrapper {
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  padding-top: 120px;
-  padding-bottom: 120px;
-  box-sizing: border-box;
-  pre {
-    color: white;
+.banner-container {
+  position: relative;
+  width: 100%;
+  .el-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
   }
-  aside {
-    h1 {
-      font-size: 55px;
-      line-height: 85px;
-      margin-bottom: 26px;
-      font-weight: 700;
-      color: white;
-      margin-right: 500px;
-    }
-    p {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 2;
-      color: white;
-      margin-bottom: 40px;
-      margin-right: 300px;
-      max-width: 660px;
+  .banner-item {
+    padding-top: 2%;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #ccc;
+    height: 100%;
+    aside {
+      h1 {
+        font-size: 3vw;
+        line-height: 1.5;
+        margin-bottom: 2%;
+        font-weight: 700;
+        color: white;
+        margin-right: 50%;
+      }
+      pre {
+        font-size: 1.25vw;
+        line-height: 1.5;
+        color: white;
+        margin-bottom: 2%;
+        margin-right: 50%;
+        max-width: 50%;
+      }
     }
   }
 }
 </style>
-
