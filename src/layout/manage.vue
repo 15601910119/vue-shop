@@ -13,7 +13,7 @@
             <router-link to="/manage/classify">分类管理</router-link>
           </el-menu-item>
            <el-menu-item index="1-4">
-            <router-link to="/manage/banners">banner管理</router-link>
+            <router-link to="/manage/banners">BANNER管理</router-link>
           </el-menu-item>
         </el-menu>
       </el-aside>

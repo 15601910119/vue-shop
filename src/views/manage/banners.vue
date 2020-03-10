@@ -214,7 +214,7 @@ export default {
       this.visible = false;
       this.$notify({
         title: '成功',
-        message: '添加成功',
+        message: '操作成功',
         type: 'success'
       });
       this.getBanners();
