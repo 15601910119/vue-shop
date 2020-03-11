@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted() {
-    apis.queryRecmmends().then(resp => {
+    apis.queryRecmmends({pageStart: 0, pageSize: 9}).then(resp => {
       this.$store.commit('set-commodities', resp.data);
     });
   }

@@ -23,9 +23,10 @@ export default {
       url: `${domain}/category/common/query`,
     });
   },
-  queryRecmmends() {
+  queryRecmmends(params) {
     return request({
       url: `${domain}/commodity/common/query`,
+      params
     });
   },
   queryCommodityDetail(params) {

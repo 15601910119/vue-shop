@@ -1,22 +1,24 @@
 <template>
   <div class="footer">
     <div class="common-container">
-      <router-link
-        exact
-        to="/"
-      >首页</router-link>
-      <el-divider direction="vertical"></el-divider>
-      <router-link to="/view/shop">主会场</router-link>
+      <div class="link">
+        <router-link
+          exact
+          to="/"
+        >首页</router-link>
+        <el-divider direction="vertical"></el-divider>
+        <router-link to="/view/shop">主会场</router-link>
 
-      <el-divider direction="vertical"></el-divider>
-      <router-link to="/view/contact">联系我</router-link>
-      <el-divider direction="vertical"></el-divider>
+        <el-divider direction="vertical"></el-divider>
+        <router-link to="/view/contact">联系我</router-link>
+        <el-divider direction="vertical"></el-divider>
 
-      <router-link to="/manage">后台管理</router-link>
-    </div>
-    <div class="row">
-      <div class="line"></div>
-      <p>Copyright © 2020.Company name All rights reserved.</p>
+        <router-link to="/manage">后台管理</router-link>
+      </div>
+
+      <div class="line">
+        <p>Copyright © 2020.Company name All rights reserved.</p>
+      </div>
     </div>
   </div>
 </template>
@@ -29,18 +31,19 @@ export default {};
   color: #c1c1c1;
   padding: 50px;
   .common-container {
+    a {
+      color: #c1c1c1;
+    }
     text-align: center;
-  }
-  a {
-    color: #c1c1c1;
   }
 
-  .row {
+  .line {
+    margin-top: 10px;
     padding-top: 10px;
-    text-align: center;
-    .line {
-      padding-top: 10px;
-      border-top: 1px solid #c1c1c1;
+    border-top: 1px solid #c1c1c1;
+    p {
+      height: 20px;
+      line-height: 20px;
     }
   }
 }

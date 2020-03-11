@@ -86,7 +86,7 @@ export default {
       .add-btn {
         .add-to-cart {
           padding-left: 25px;
-          width: 74px;
+          width: 110px;
         }
       }
       .add-wishlist {

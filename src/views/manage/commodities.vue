@@ -8,13 +8,54 @@
           v-model="classify"
         >
           <el-option
-            :key="item.value"
+            :key="item.id"
             :label="item.name"
             :value="item.id"
             v-for="item in classes"
           ></el-option>
         </el-select>
       </el-form-item>
+
+      <el-form-item label="品牌种类">
+        <el-select
+          @change="onBrandChange"
+          placeholder="请选择"
+          v-model="brandId"
+        >
+          <el-option
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+            v-for="item in categories"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="热门种类">
+        <el-radio-group
+          @change="onHotCommodity"
+          v-model="radio"
+        >
+          <el-radio label="true">热销</el-radio>
+          <el-radio label="false">非热销</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
+      <el-form-item>
+        <el-input
+          @keyup.enter.native="searchName"
+          class="input-with-select"
+          placeholder="输入商品名字进行搜索"
+          v-model="commodityName"
+        >
+          <el-button
+            @click="searchName"
+            icon="el-icon-search"
+            slot="append"
+          ></el-button>
+        </el-input>
+      </el-form-item>
+
       <el-form-item>
         <el-button
           @click="handleAdd()"
@@ -23,38 +64,42 @@
       </el-form-item>
     </el-form>
 
-    <el-table
-      :data="tableData"
-      style="width: 100%"
-    >
+    <el-table :data="tableData">
       <el-table-column
+        fixed="left"
         label="商品名称"
         prop="name"
+        width="120"
       ></el-table-column>
 
       <el-table-column
         label="商品状态"
         prop="status"
+        width="80"
       ></el-table-column>
 
       <el-table-column
         label="商品价格"
         prop="price"
+        width="80"
       ></el-table-column>
 
       <el-table-column
         label="折扣价格"
         prop="discounted"
+        width="80px"
       ></el-table-column>
 
       <el-table-column
         label="库存"
         prop="inventory"
+        width="80px"
       ></el-table-column>
 
       <el-table-column
         label="商品类型"
         prop="classificationId"
+        width="100px"
       >
         <template slot-scope="data">{{toClasses(data.row.classificationId)}}</template>
       </el-table-column>
@@ -62,20 +107,31 @@
       <el-table-column
         label="所属品牌"
         prop="categoryId"
+        width="100px"
       >
         <template slot-scope="data">{{toCategory(data.row.categoryId)}}</template>
       </el-table-column>
 
       <el-table-column
         label="商品信息"
+        min-width="300px"
         prop="description"
       ></el-table-column>
 
       <el-table-column
+        fixed="right"
         label="操作"
-        width="100"
+        width="200px"
       >
         <template slot-scope="scope">
+          <el-button
+            @click="onChangeHot(scope.row)"
+            type="text"
+          >
+            {{
+            scope.row.hot ? `取消热销` : `设为热销`
+            }}
+          </el-button>
           <el-button
             @click="handleEdit(scope.row)"
             type="text"
@@ -89,10 +145,10 @@
     </el-table>
 
     <el-dialog
+      :close-on-click-modal="false"
       :title="title"
       :visible.sync="visible"
       @closed="onClosed"
-      :close-on-click-modal="false"
     >
       <el-form
         :model="form"
@@ -248,6 +304,16 @@
         >确定</el-button>
       </span>
     </el-dialog>
+
+    <div class="pagination">
+      <el-pagination
+        :page-size="pageSize"
+        :total="total"
+        @current-change="onCurrentPageChange($event)"
+        background
+        layout="prev, pager, next"
+      ></el-pagination>
+    </div>
   </div>
 </template>
 
@@ -256,10 +322,7 @@ import apis from '@/store/network/manage';
 
 export default {
   mounted() {
-    apis.queryCommodities().then(resp => {
-      this.tableData = resp.data;
-    });
-
+    this.getCommodities();
     apis.queryAllCategoreis().then(resp => {
       this.categories = resp.data;
     });
@@ -269,14 +332,58 @@ export default {
   },
 
   methods: {
+    searchName() {
+      this.getCommodities();
+    },
+    onBrandChange() {
+      this.getCommodities();
+    },
+    onClassChange() {
+      this.getCommodities();
+    },
+    onHotCommodity() {
+      this.getCommodities();
+    },
+    onCurrentPageChange(curr) {
+      this.pageStart = curr - 1;
+      this.getCommodities();
+    },
+    getCommodities() {
+      apis
+        .queryCommodities({
+          pageStart: this.pageStart,
+          pageSize: this.pageSize,
+          name: this.commodityName,
+          classificationId: this.classify,
+          categoryId: this.brandId,
+          hot: this.radio
+        })
+        .then(resp => {
+          this.tableData = resp.data;
+          this.total = resp.total;
+        });
+    },
     onFileChange(file, list) {
       this.form.files = list;
     },
-    onClassChange(value) {
-      apis.queryCommodities({ type: value }).then(resp => {
-        this.tableData = resp.data;
-      });
+    onChangeHot(data) {
+      if (data.hot === true) {
+        apis.cancelHotCommodity({ id: data.id }).then(resp => {
+          apis.queryCommodities().then(resp => {
+            this.tableData = resp.data;
+          });
+          this.$message.success('操作成功');
+        });
+      } else {
+        apis.addHotCommoditiy({ id: data.id }).then(resp => {
+          apis.queryCommodities().then(resp => {
+            this.tableData = resp.data;
+          });
+          this.$message.success('操作成功');
+        });
+      }
     },
+
     onClosed() {
       this.form = {};
       this.uploadedFiles = [];
@@ -401,6 +508,12 @@ export default {
 
   data() {
     return {
+      radio: '',
+      brandId: '',
+      commodityName: '',
+      total: 0,
+      pageStart: 0,
+      pageSize: 10,
       uploadedFiles: [],
       dialogImageUrl: '',
       dialogVisible: false,
@@ -485,6 +598,10 @@ export default {
     .el-select {
       width: 100%;
     }
+  }
+  .pagination {
+    margin-top: 10px;
+    text-align: center;
   }
 }
 </style>

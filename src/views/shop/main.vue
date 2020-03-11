@@ -12,18 +12,6 @@
         :xl="6"
         class="left-side"
       >
-        <article>
-          <div class="title">
-            <h5>
-              <i class="el-icon-s-operation"></i>商品分类
-            </h5>
-          </div>
-
-          <ul>
-            <li @click="fetchCommodities(`fruit`)">水果类</li>
-            <li @click="fetchCommodities(`vegetables`)">蔬菜类</li>
-          </ul>
-        </article>
         <div class="best">
           <h5>今天热销产品</h5>
           <el-row class="best-shop">
@@ -78,45 +66,114 @@
           >
             <commodity :data="commodity"></commodity>
           </el-col>
+          <p
+            id="loading"
+            v-if="!loadDone"
+          >加载中....</p>
         </el-row>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
+import lodash from 'lodash';
+import $ from 'jquery';
 import Breadcrumb from '@/components/breadcrumb';
 import Commodity from '@/components/commodity';
 import apis from '@/store/network/apis';
-import api from '@/store/network/manage';
+import hot from '@/store/network/manage';
+
+function isInViewPortOfTwo(el) {
+  const viewPortHeight =
+    window.innerHeight ||
+    document.documentElement.clientHeight ||
+    document.body.clientHeight;
+  const top = el.getBoundingClientRect() && el.getBoundingClientRect().top;
+
+  return top <= viewPortHeight - 100;
+}
+
 export default {
   components: {
     breadcrumb: Breadcrumb,
     commodity: Commodity
   },
-
+  destroyed() {
+    window.addEventListener(`scroll`, this._onScroll);
+  },
   mounted() {
-    apis.queryRecmmends().then(resp => {
-      this.commodities = resp.data;
-      for (var i = 0; i < this.commodities.length; i++) {
-        if (this.commodities[i].hot1 || this.commodities[i].hot2) {
-          this.hotCommodities.push(this.commodities[i]);
-        }
-      }
+    this.getCommodities();
+    hot.queryHotCommodities().then(resp => {
+      this.hotCommodities = resp.data;
     });
-    api.queryClassify().then(resp => {
+
+    hot.queryClassify().then(resp => {
       this.classifys = resp.data;
     });
+
+    this._onScroll = lodash.debounce(this.onScroll, 300);
+
+    window.addEventListener(`scroll`, this._onScroll);
   },
   methods: {
-    fetchCommodities() {},
-    onClassifyChange(value) {
-      apis.queryRecmmends(value).then(resp => {
+    onScroll() {
+      if (this.loadDone) {
+        return false;
+      }
+      if (this.loading) {
+        return false;
+      }
+
+      if (isInViewPortOfTwo(document.getElementById(`loading`))) {
+        this.load();
+      }
+    },
+    onClassifyChange() {
+      this.loadDone = false;
+      this.pageStart = 0;
+      this.getCommodities().then(resp => {
         this.commodities = resp.data;
+
+        if (this.commodities.length >= resp.total) {
+          this.loadDone = true;
+        }
       });
+    },
+    async load() {
+      if (this.loadDone) {
+        return;
+      }
+
+      this.loading = true;
+      var resp = await this.getCommodities();
+      this.pageStart++;
+
+      this.commodities = this.commodities.concat(resp.data);
+
+      if (this.commodities.length >= resp.total) {
+        this.loadDone = true;
+      }
+
+      this.loading = false;
+    },
+    getCommodities() {
+      return apis
+        .queryRecmmends({
+          pageSize: this.pageSize,
+          pageStart: this.pageStart,
+          classificationId: this.classify
+        })
+        .then(resp => {
+          return resp;
+        });
     }
   },
   data() {
     return {
+      loadDone: false,
+      loading: false,
+      pageSize: 5,
+      pageStart: 0,
       hotCommodities: [],
       commodities: [],
       classify: '',
@@ -225,6 +282,10 @@ export default {
         margin-bottom: 30px;
       }
     }
+  }
+
+  #loading {
+    clear: both;
   }
 }
 </style>

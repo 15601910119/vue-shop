@@ -41,6 +41,7 @@ export default {
   queryCommodities(params) {
     return request({
       url: `${domain}/commodity/get`,
+      params
     });
   },
   queryCommodityPictures(params) {
@@ -144,4 +145,24 @@ export default {
       type: 'post',
     })
   },
+  queryHotCommodities() {
+    return request({
+      url: `${domain}/hot/get`,
+    })
+  },
+  addHotCommoditiy(data) {
+    return request({
+      url: `${domain}/hot/add`,
+      type: `post`,
+      data: data
+    })
+  },
+  cancelHotCommodity(data) {
+    return request({
+      url: `${domain}/hot/del`,
+      type: `post`,
+      data: data
+    })
+  }
+
 };

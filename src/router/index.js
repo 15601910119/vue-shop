@@ -163,7 +163,8 @@ const routes = [
           import(
             /* webpackChunkName: "banners" */ '../views/manage/banners.vue'
           )
-      }
+      },
+
     ]
   },
   {
