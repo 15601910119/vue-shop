@@ -60,11 +60,11 @@ body {
   .route {
     & > :first-child {
       min-height: calc(100vh - 80px);
-      padding-bottom: 594px;
+      padding-bottom: 166px;
     }
     .footer {
-      margin-top: -594px;
-      height: 594px;
+      margin-top: -166px;
+      height: 166px;
     }
   }
 }

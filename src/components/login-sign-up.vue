@@ -17,7 +17,7 @@ export default {};
 
 <style lang="less">
 .login-sign {
-  background-image: url('../components/login.jpg');
+  background-image: url('http://assets.xvivx.online/static/login.jpg');
   .form-container {
     position: relative;
     padding-top: 50%;
