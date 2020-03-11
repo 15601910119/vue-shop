@@ -292,10 +292,6 @@ export default {
       .el-button {
         padding: 3px 0;
       }
-      .danger {
-        color: #f56c6c;
-        margin-left: 5px;
-      }
     }
     .img-container {
       position: relative;
@@ -304,10 +300,6 @@ export default {
       background-position: center;
       background-repeat: no-repeat;
     }
-  }
-  .el-dialog {
-    max-height: 43vw;
-    overflow-y: auto;
   }
   .el-upload {
     display: flex;

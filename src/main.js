@@ -21,8 +21,15 @@ Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 
+window.addEventListener(`unhandledrejection`, function(event) {
+  event && event.preventDefault();
+  event.reason && console.log(event.reason.error);
+
+  return false;
+});
+
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app');

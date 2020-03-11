@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-nav></app-nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -57,6 +57,10 @@ body {
   }
   padding-top: 80px;
   box-sizing: border-box;
+  .el-dialog__body {
+    max-height: 36vw;
+    overflow-y: auto;
+  }
   .route {
     & > :first-child {
       min-height: calc(100vh - 80px);
@@ -66,6 +70,10 @@ body {
       margin-top: -166px;
       height: 166px;
     }
+  }
+  .danger {
+    color: #f56c6c;
+    margin-left: 5px;
   }
 }
 </style>

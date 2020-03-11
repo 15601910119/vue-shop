@@ -12,7 +12,9 @@
 <script>
 import apis from '@/store/network/apis';
 
-export default {};
+export default {
+
+};
 </script>
 
 <style lang="less">
@@ -20,7 +22,7 @@ export default {};
   background-image: url('http://assets.xvivx.online/static/login.jpg');
   .form-container {
     position: relative;
-    padding-top: 50%;
+    height: calc(100vh - 80px);
     .common-container {
       position: absolute;
       top: 0;

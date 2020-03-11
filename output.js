@@ -1,7 +1,7 @@
-var config = {
+export default {
   mode: 'production',
-  context: '/Users/lpc/Desktop/shop',
-  devtool: 'source-map',
+  context: '/Users/dev/Desktop/shop/vue-shop',
+  devtool: false,
   node: {
     setImmediate: false,
     process: 'mock',
@@ -12,14 +12,14 @@ var config = {
     child_process: 'empty'
   },
   output: {
-    path: '/Users/lpc/Desktop/shop/dist',
-    filename: 'js/[name].[contenthash:8].js',
+    path: '/Users/dev/Desktop/shop/vue-shop/dist',
+    filename: 'assets/js/[name].[contenthash:8].js',
     publicPath: '/',
-    chunkFilename: 'js/[name].[contenthash:8].js'
+    chunkFilename: 'assets/js/[name].[contenthash:8].js'
   },
   resolve: {
     alias: {
-      '@': '/Users/lpc/Desktop/shop/src',
+      '@': '/Users/dev/Desktop/shop/vue-shop/src',
       vue$: 'vue/dist/vue.runtime.esm.js'
     },
     extensions: [
@@ -32,16 +32,16 @@ var config = {
     ],
     modules: [
       'node_modules',
-      '/Users/lpc/Desktop/shop/node_modules',
-      '/Users/lpc/Desktop/shop/node_modules/@vue/cli-service/node_modules'
+      '/Users/dev/Desktop/shop/vue-shop/node_modules',
+      '/Users/dev/Desktop/shop/vue-shop/node_modules/@vue/cli-service/node_modules'
     ]
   },
   resolveLoader: {
     modules: [
-      '/Users/lpc/Desktop/shop/node_modules/@vue/cli-plugin-babel/node_modules',
+      '/Users/dev/Desktop/shop/vue-shop/node_modules/@vue/cli-plugin-babel/node_modules',
       'node_modules',
-      '/Users/lpc/Desktop/shop/node_modules',
-      '/Users/lpc/Desktop/shop/node_modules/@vue/cli-service/node_modules'
+      '/Users/dev/Desktop/shop/vue-shop/node_modules',
+      '/Users/dev/Desktop/shop/vue-shop/node_modules/@vue/cli-service/node_modules'
     ]
   },
   module: {
@@ -53,21 +53,21 @@ var config = {
         use: [
           /* config.module.rule('vue').use('cache-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/cache-loader/dist/cjs.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/cache-loader/dist/cjs.js',
             options: {
-              cacheDirectory: '/Users/lpc/Desktop/shop/node_modules/.cache/vue-loader',
-              cacheIdentifier: 'bfaf760a'
+              cacheDirectory: '/Users/dev/Desktop/shop/vue-shop/node_modules/.cache/vue-loader',
+              cacheIdentifier: 'f47ce682'
             }
           },
           /* config.module.rule('vue').use('vue-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/vue-loader/lib/index.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/vue-loader/lib/index.js',
             options: {
               compilerOptions: {
                 whitespace: 'condense'
               },
-              cacheDirectory: '/Users/lpc/Desktop/shop/node_modules/.cache/vue-loader',
-              cacheIdentifier: 'bfaf760a'
+              cacheDirectory: '/Users/dev/Desktop/shop/vue-shop/node_modules/.cache/vue-loader',
+              cacheIdentifier: 'f47ce682'
             }
           }
         ]
@@ -78,13 +78,13 @@ var config = {
         use: [
           /* config.module.rule('images').use('url-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/url-loader/dist/cjs.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 4096,
               fallback: {
                 loader: 'file-loader',
                 options: {
-                  name: 'img/[name].[hash:8].[ext]'
+                  name: 'assets/img/[name].[hash:8].[ext]'
                 }
               }
             }
@@ -97,9 +97,9 @@ var config = {
         use: [
           /* config.module.rule('svg').use('file-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/file-loader/dist/cjs.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/file-loader/dist/cjs.js',
             options: {
-              name: 'img/[name].[hash:8].[ext]'
+              name: 'assets/img/[name].[hash:8].[ext]'
             }
           }
         ]
@@ -110,13 +110,13 @@ var config = {
         use: [
           /* config.module.rule('media').use('url-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/url-loader/dist/cjs.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 4096,
               fallback: {
                 loader: 'file-loader',
                 options: {
-                  name: 'media/[name].[hash:8].[ext]'
+                  name: 'assets/media/[name].[hash:8].[ext]'
                 }
               }
             }
@@ -129,13 +129,13 @@ var config = {
         use: [
           /* config.module.rule('fonts').use('url-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/url-loader/dist/cjs.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 4096,
               fallback: {
                 loader: 'file-loader',
                 options: {
-                  name: 'fonts/[name].[hash:8].[ext]'
+                  name: 'assets/fonts/[name].[hash:8].[ext]'
                 }
               }
             }
@@ -181,15 +181,15 @@ var config = {
             use: [
               /* config.module.rule('css').oneOf('vue-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('css').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -200,7 +200,7 @@ var config = {
               },
               /* config.module.rule('css').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -216,15 +216,15 @@ var config = {
             use: [
               /* config.module.rule('css').oneOf('vue').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('css').oneOf('vue').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -232,7 +232,7 @@ var config = {
               },
               /* config.module.rule('css').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -248,15 +248,15 @@ var config = {
             use: [
               /* config.module.rule('css').oneOf('normal-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('css').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -267,7 +267,7 @@ var config = {
               },
               /* config.module.rule('css').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -282,15 +282,15 @@ var config = {
             use: [
               /* config.module.rule('css').oneOf('normal').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('css').oneOf('normal').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -298,7 +298,7 @@ var config = {
               },
               /* config.module.rule('css').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -320,15 +320,15 @@ var config = {
             use: [
               /* config.module.rule('postcss').oneOf('vue-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -339,7 +339,7 @@ var config = {
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -355,15 +355,15 @@ var config = {
             use: [
               /* config.module.rule('postcss').oneOf('vue').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('postcss').oneOf('vue').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -371,7 +371,7 @@ var config = {
               },
               /* config.module.rule('postcss').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -387,15 +387,15 @@ var config = {
             use: [
               /* config.module.rule('postcss').oneOf('normal-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -406,7 +406,7 @@ var config = {
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -421,15 +421,15 @@ var config = {
             use: [
               /* config.module.rule('postcss').oneOf('normal').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('postcss').oneOf('normal').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -437,7 +437,7 @@ var config = {
               },
               /* config.module.rule('postcss').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -459,15 +459,15 @@ var config = {
             use: [
               /* config.module.rule('scss').oneOf('vue-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -478,7 +478,7 @@ var config = {
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -501,15 +501,15 @@ var config = {
             use: [
               /* config.module.rule('scss').oneOf('vue').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('scss').oneOf('vue').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -517,7 +517,7 @@ var config = {
               },
               /* config.module.rule('scss').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -540,15 +540,15 @@ var config = {
             use: [
               /* config.module.rule('scss').oneOf('normal-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -559,7 +559,7 @@ var config = {
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -581,15 +581,15 @@ var config = {
             use: [
               /* config.module.rule('scss').oneOf('normal').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('scss').oneOf('normal').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -597,7 +597,7 @@ var config = {
               },
               /* config.module.rule('scss').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -626,15 +626,15 @@ var config = {
             use: [
               /* config.module.rule('sass').oneOf('vue-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -645,7 +645,7 @@ var config = {
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -671,15 +671,15 @@ var config = {
             use: [
               /* config.module.rule('sass').oneOf('vue').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('sass').oneOf('vue').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -687,7 +687,7 @@ var config = {
               },
               /* config.module.rule('sass').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -713,15 +713,15 @@ var config = {
             use: [
               /* config.module.rule('sass').oneOf('normal-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -732,7 +732,7 @@ var config = {
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -757,15 +757,15 @@ var config = {
             use: [
               /* config.module.rule('sass').oneOf('normal').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('sass').oneOf('normal').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -773,7 +773,7 @@ var config = {
               },
               /* config.module.rule('sass').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -805,15 +805,15 @@ var config = {
             use: [
               /* config.module.rule('less').oneOf('vue-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('less').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -824,7 +824,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -834,7 +834,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('vue-modules').use('less-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/less-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false
                 }
@@ -847,15 +847,15 @@ var config = {
             use: [
               /* config.module.rule('less').oneOf('vue').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('less').oneOf('vue').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -863,7 +863,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -873,7 +873,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('vue').use('less-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/less-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false
                 }
@@ -886,15 +886,15 @@ var config = {
             use: [
               /* config.module.rule('less').oneOf('normal-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('less').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -905,7 +905,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -915,7 +915,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('normal-modules').use('less-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/less-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false
                 }
@@ -927,15 +927,15 @@ var config = {
             use: [
               /* config.module.rule('less').oneOf('normal').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('less').oneOf('normal').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -943,7 +943,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -953,7 +953,7 @@ var config = {
               },
               /* config.module.rule('less').oneOf('normal').use('less-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/less-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false
                 }
@@ -972,15 +972,15 @@ var config = {
             use: [
               /* config.module.rule('stylus').oneOf('vue-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -991,7 +991,7 @@ var config = {
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1015,15 +1015,15 @@ var config = {
             use: [
               /* config.module.rule('stylus').oneOf('vue').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('stylus').oneOf('vue').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -1031,7 +1031,7 @@ var config = {
               },
               /* config.module.rule('stylus').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1055,15 +1055,15 @@ var config = {
             use: [
               /* config.module.rule('stylus').oneOf('normal-modules').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -1074,7 +1074,7 @@ var config = {
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1097,15 +1097,15 @@ var config = {
             use: [
               /* config.module.rule('stylus').oneOf('normal').use('extract-css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: {
                   hmr: false,
-                  publicPath: '../'
+                  publicPath: '../../'
                 }
               },
               /* config.module.rule('stylus').oneOf('normal').use('css-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -1113,7 +1113,7 @@ var config = {
               },
               /* config.module.rule('stylus').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/Users/lpc/Desktop/shop/node_modules/postcss-loader/src/index.js',
+                loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1142,19 +1142,19 @@ var config = {
         use: [
           /* config.module.rule('js').use('cache-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/cache-loader/dist/cjs.js',
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/cache-loader/dist/cjs.js',
             options: {
-              cacheDirectory: '/Users/lpc/Desktop/shop/node_modules/.cache/babel-loader',
-              cacheIdentifier: '278e6d66'
+              cacheDirectory: '/Users/dev/Desktop/shop/vue-shop/node_modules/.cache/babel-loader',
+              cacheIdentifier: 'e3730906'
             }
           },
           /* config.module.rule('js').use('thread-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/thread-loader/dist/cjs.js'
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/thread-loader/dist/cjs.js'
           },
           /* config.module.rule('js').use('babel-loader') */
           {
-            loader: '/Users/lpc/Desktop/shop/node_modules/babel-loader/lib/index.js'
+            loader: '/Users/dev/Desktop/shop/vue-shop/node_modules/babel-loader/lib/index.js'
           }
         ]
       }
@@ -1165,7 +1165,7 @@ var config = {
       cacheGroups: {
         vendors: {
           name: 'chunk-vendors',
-          test: /[\\\/]node_modules[\\\/]/,
+          test: /[\\/]node_modules[\\/]/,
           priority: -10,
           chunks: 'initial'
         },
@@ -1248,8 +1248,8 @@ var config = {
     /* config.plugin('extract-css') */
     new MiniCssExtractPlugin(
       {
-        filename: 'css/[name].[contenthash:8].css',
-        chunkFilename: 'css/[name].[contenthash:8].css'
+        filename: 'assets/css/[name].[contenthash:8].css',
+        chunkFilename: 'assets/css/[name].[contenthash:8].css'
       }
     ),
     /* config.plugin('optimize-css') */
@@ -1288,7 +1288,7 @@ var config = {
           collapseBooleanAttributes: true,
           removeScriptTypeAttributes: true
         },
-        template: '/Users/lpc/Desktop/shop/public/index.html'
+        template: '/Users/dev/Desktop/shop/vue-shop/public/index.html'
       }
     ),
     /* config.plugin('preload') */
@@ -1313,8 +1313,8 @@ var config = {
     new CopyPlugin(
       [
         {
-          from: '/Users/lpc/Desktop/shop/public',
-          to: '/Users/lpc/Desktop/shop/dist',
+          from: '/Users/dev/Desktop/shop/vue-shop/public',
+          to: '/Users/dev/Desktop/shop/vue-shop/dist',
           toType: 'dir',
           ignore: [
             '.DS_Store',
