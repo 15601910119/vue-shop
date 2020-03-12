@@ -26,7 +26,7 @@
             :key="item.id"
             :label="item.name"
             :value="item.id"
-            v-for="item in categories"
+            v-for="item in brands"
           ></el-option>
         </el-select>
       </el-form-item>
@@ -93,6 +93,12 @@
       <el-table-column
         label="库存"
         prop="inventory"
+        width="80px"
+      ></el-table-column>
+
+      <el-table-column
+        label="销量"
+        prop="sales"
         width="80px"
       ></el-table-column>
 
@@ -255,7 +261,7 @@
                   :key="item.value"
                   :label="item.name"
                   :value="item.id"
-                  v-for="item in categories"
+                  v-for="item in brands"
                 ></el-option>
               </el-select>
             </el-form-item>
@@ -324,7 +330,7 @@ export default {
   mounted() {
     this.getCommodities();
     apis.queryAllCategoreis().then(resp => {
-      this.categories = resp.data;
+      this.brands = resp.data;
     });
     apis.queryAllClasses().then(resp => {
       this.classes = resp.data || [];
@@ -390,10 +396,10 @@ export default {
       this.$refs.form.resetFields();
     },
     toCategory(id) {
-      if (this.categories.length === 0) {
+      if (this.brands.length === 0) {
         return '--';
       } else {
-        var category = this.categories.find(item => {
+        var category = this.brands.find(item => {
           return item.id === id;
         });
         if (!category) {
@@ -520,7 +526,6 @@ export default {
       classify: '',
       brands: [],
       classes: [],
-      categories: [],
       title: '',
       tableData: [],
       visible: false,

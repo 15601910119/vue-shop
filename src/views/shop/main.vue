@@ -99,7 +99,7 @@ export default {
     commodity: Commodity
   },
   destroyed() {
-    window.addEventListener(`scroll`, this._onScroll);
+    window.removeEventListener(`scroll`, this._onScroll);
   },
   mounted() {
     this.getCommodities();
@@ -113,7 +113,7 @@ export default {
 
     this._onScroll = lodash.debounce(this.onScroll, 300);
 
-    window.addEventListener(`scroll`, this._onScroll);
+    window.addEventListener(`scroll`, this._onScroll, false);
   },
   methods: {
     onScroll() {

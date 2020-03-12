@@ -24,7 +24,7 @@
             class="add-to-cart"
             javascript="void(0);"
           >加入购物车</a>
-          <price :value="data.price"></price>
+          <price :value="data.discounted || data.price"></price>
         </div>
         <div class="add-wishlist">
           <i

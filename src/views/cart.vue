@@ -12,23 +12,35 @@
         >
           <div class="cart-content">
             <h4>购物车</h4>
-            <div class="flex-center flex-row title">
-              <div class="info name">商品</div>
-              <div class="count">数量</div>
-              <div class="price">单价</div>
-              <div class="total">总价</div>
-            </div>
-            <cart-commodity
-              :data="commodity"
-              :key="commodity.id"
-              v-for="commodity in $store.state.carts"
-            ></cart-commodity>
-            <div class="title">
-             <router-link to="/shop">
-               <el-button type="primary">继续购物</el-button>
-             </router-link>
-              <el-button type="info" @click="onClearCart">清空购物车</el-button>
-            </div>
+
+            <el-table :data="$store.state.carts">
+              <el-table-column type="selection" >
+              </el-table-column>
+              <el-table-column label="名称" width="200px">
+                <template slot-scope="scope">
+                  <div class="flex-center" >
+                    <span>{{scope.row.name}}</span>
+                    <img :src="scope.row.image" alt="">
+                  </div>
+                </template>
+              </el-table-column>
+              <el-table-column label="数量" prop="count">
+
+              </el-table-column>
+               <el-table-column label="价格" prop="price">
+
+              </el-table-column>
+                <el-table-column label="总价" prop="price">
+
+              </el-table-column>
+              <el-table-column label="操作" >
+                <template  slot-scope="scope">
+                  <el-button type="text">删除</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+
+
           </div>
         </el-col>
         <el-col
@@ -40,7 +52,7 @@
             <div class="indent-total">
               <div class="total-item">
                 <span>总订单</span>
-                <span>{{$store.state.carts.length}}</span>
+                <span>{{checkeds.length}}</span>
               </div>
               <div class="total-item">
                 <span>总数量</span>
@@ -66,7 +78,10 @@
                 <span>¥{{allMoney}}</span>
               </div>
               <div class="total-item">
-                <el-button type="primary" @click="$router.push({name: 'to-money'})">收银台</el-button>
+                <el-button
+                  @click="onSubimt"
+                  type="primary"
+                >收银台</el-button>
               </div>
             </div>
           </div>
@@ -78,15 +93,20 @@
 <script>
 import Breadcrumb from '@/components/breadcrumb';
 import CartCommodity from '@/views/shop/cart-commodity';
-import apis from '@/store/network/apis'
+import apis from '@/store/network/apis';
 export default {
   components: {
     'cart-breadcrumb': Breadcrumb,
     'cart-commodity': CartCommodity
   },
+  mounted() {
+    this.tableCommodity = this.$store.state.carts;
+    console.log(this.tableCommodity);
+  },
   data() {
     return {
-      num: 1,
+      tableCommodity: [],
+      checkeds: [],
       routes: [
         {
           path: '/',
@@ -100,36 +120,84 @@ export default {
     };
   },
   methods: {
+    onCheckboxChange(commodity) {
+      var found = this.checkeds.find(item => item.id === commodity.id);
+      if (found) {
+        this.checkeds = this.checkeds.filter(item => item.id !== commodity.id);
+      } else {
+        this.checkeds.push(commodity);
+      }
+    },
+    onCheckedAllChange() {
+      if (this.checkedAll) {
+        this.checkeds = [];
+      } else {
+        this.checkeds = this.carts.slice(0);
+      }
+    },
+    getCommodityStatus(data) {
+      var checked = this.checkeds.find(item => item.id === data.id)
+        ? true
+        : false;
+      return checked;
+    },
+    async onDeleteCommodity(data) {
+      await this.$store.dispatch(`delete-cart`, data);
+      this.checkeds = this.checkeds.filter(item => item.id !== data.id);
+    },
     onClearCart() {
-     this.$store.dispatch(`clear-cart`).then(() => {
-       this.$message.success('操作成功');
-     })
+      this.checkeds = [];
+      this.$store.dispatch(`clear-cart`).then(() => {
+        this.$message.success('操作成功');
+      });
+    },
+    onSubimt() {
+      if (this.checkeds.length === 0) {
+        this.$message.error('请选择商品');
+        return;
+      } else {
+        this.$router.push({ name: 'to-money' });
+      }
     }
   },
   computed: {
+    carts() {
+      return this.$store.state.carts;
+    },
+    checkedAll() {
+      if (this.checkeds.length && this.checkeds.length === this.carts.length) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    isIndeterminate() {
+      return (
+        this.checkeds.length > 0 && this.checkeds.length < this.carts.length
+      );
+    },
     allNumber() {
-      var carts = this.$store.state.carts;
       var num = 0;
-      for (var i = 0; i < carts.length; i++) {
-        num += carts[i].count;
+      for (var i = 0; i < this.checkeds.length; i++) {
+        num += this.checkeds[i].count;
       }
       return num;
     },
     discount() {
       var total = 0;
-      var carts = this.$store.state.carts;
-      for (var i = 0; i < carts.length; i++) {
-        if (carts[i].actual) {
-          total += (carts[i].actual - carts[i].price) * carts[i].count;
+      for (var i = 0; i < this.checkeds.length; i++) {
+        if (this.checkeds[i].discounted) {
+          total +=
+            (this.checkeds[i].price - this.checkeds[i].discounted) *
+            this.checkeds[i].count;
         }
       }
       return total.toFixed(2);
     },
     allMoney() {
-      var carts = this.$store.state.carts;
       var money = 0;
-      for (var i = 0; i < carts.length; i++) {
-        money += carts[i].price * carts[i].count;
+      for (var i = 0; i < this.checkeds.length; i++) {
+        money += this.checkeds[i].price * this.checkeds[i].count;
       }
       return money.toFixed(2);
     }
@@ -153,6 +221,15 @@ export default {
       border-radius: 5px;
       padding: 50px;
       flex: 1 1 0;
+      .content {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .flex-row {
+          flex: 1 1 0;
+        }
+      }
       .price {
         justify-content: center;
         margin-right: 0;
@@ -167,6 +244,19 @@ export default {
           font-size: 18px;
         }
       }
+      .flex-center {
+        justify-content: flex-start;
+      }
+      img {
+        width: 80px;
+        height: 80px;
+        margin-left: 10px;
+      }
+      .el-table th>.cell {
+        label {
+          padding-left: 4px;
+        }
+      }
     }
     .indent {
       border: 1px solid #f3f3f3;
@@ -179,8 +269,8 @@ export default {
           display: flex;
           justify-content: space-between;
           align-items: center;
-            color: #292633;
-            font-weight: 600;
+          color: #292633;
+          font-weight: 600;
 
           .el-button--primary {
             width: 100%;
