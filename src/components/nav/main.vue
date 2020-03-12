@@ -108,13 +108,12 @@ export default {
     display: flex;
     align-items: center;
     .navs {
-      margin-left: 50px;
       flex: 1 1 0;
       border: none;
       a {
         font-size: 18px;
         font-weight: 700;
-        margin: 0 30px;
+        margin-left: 30px;
         color: #606266;
       }
       .router-link-active {

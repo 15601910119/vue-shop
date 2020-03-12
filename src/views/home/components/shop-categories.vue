@@ -4,14 +4,14 @@
       <h2>在线品牌</h2>
       <p>江南、江南、江南商品厂倒闭、倒闭了，以前100元、200元，现在统统、统统超低价、低价出售，大力折扣进行中...</p>
     </div>
-    <el-row>
+    <el-row :gutter="30">
       <el-col
         :key="shop.id"
         :lg="6"
         :md="6"
         :sm="8"
         :xl="4"
-        :xs="12"
+        :xs="24"
         class="shop-bg-container"
         v-for="shop in shops"
       >
@@ -48,8 +48,6 @@ export default {
 // 响应式品牌列表样式
 .shop-categories {
   .shop-bg-container {
-    padding-left: 15px;
-    padding-right: 15px;
     margin-bottom: 30px;
     .img-wrapper {
       display: flex;

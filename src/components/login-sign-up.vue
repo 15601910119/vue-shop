@@ -20,6 +20,7 @@ export default {
 <style lang="less">
 .login-sign {
   background-image: url('http://assets.xvivx.online/static/login.jpg');
+  background-size: cover;
   .form-container {
     position: relative;
     height: calc(100vh - 80px);

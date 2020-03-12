@@ -134,7 +134,6 @@ export default {
 <style lang="less">
 .commodity-details {
   .common-container {
-    margin: 120px auto;
     .container {
       .commodity-image {
         .img-big {

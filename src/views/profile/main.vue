@@ -2,10 +2,7 @@
   <div class="personal-center">
     <div class="common-container">
       <el-row :gutter="30">
-        <el-col
-          :span="6"
-          class="siderbar"
-        >
+        <el-col :span="6" class="siderbar">
           <el-card class="head-portrait">
             <div class="title">
               <el-upload
@@ -20,16 +17,17 @@
                 ></el-avatar>
               </el-upload>
             </div>
-            <el-button
-              @click="onGotoEditUserInfo"
-              type="primary"
-            >编辑资料</el-button>
+            <el-button @click="onGotoEditUserInfo" type="primary"
+              >编辑资料</el-button
+            >
             <el-button type="primary">退出登录</el-button>
           </el-card>
           <el-card class="sub-nav-list">
             <el-menu>
               <el-menu-item index="1-1">
-                <router-link :to="{name: `user-address`}">收货地址</router-link>
+                <router-link :to="{ name: `user-address` }"
+                  >收货地址</router-link
+                >
               </el-menu-item>
               <el-menu-item index="1-2">
                 <router-link to="/view/profile/indent">我的订单</router-link>
@@ -87,7 +85,7 @@ export default {
     color: #3dca79;
   }
   .common-container {
-    padding-top: 50px;
+    padding-top: 20px;
     .siderbar {
       .el-card {
         margin-bottom: 15px;

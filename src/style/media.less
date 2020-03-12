@@ -2,15 +2,65 @@
   width: 83.333333%;
 }
 
+// 移动端处理
 @media only screen and (max-width: 767px) {
-  .common-container {
-    padding: 0 15px;
-  }
-  .shop .best-shop .product-action .add-btn span {
-    font-size: 14px;
-  }
-  .shop .common-container .left-side.el-col {
-    padding-right: 0;
+  div#app {
+    padding-top: 50px;
+    // 导航相关
+    .app-nav {
+      .navs {
+        a {
+          margin-left: 30px;
+          margin-right: 0;
+        }
+      }
+    }
+    .cart-page {
+      .commodity-row {
+        align-items: flex-start;
+        .el-checkbox {
+          margin-top: 43px;
+        }
+      }
+    }
+    .banner-container .banner-item {
+      padding-top: 5%;
+      .common-container {
+        padding-left: 15px;
+      }
+    }
+    .special-offer-slider {
+      width: 100%;
+      padding: 0;
+      .single-product {
+        padding: 0;
+      }
+      .el-icon-arrow-right {
+        right: 15px;
+      }
+      .el-icon-arrow-left {
+        left: 15px;
+        z-index: 10;
+      }
+    }
+    .common-container {
+      padding: 0;
+      overflow: hidden;
+    }
+    .banner-container {
+      padding-top: 50% !important;
+    }
+    .special-offer-slider .slick-slide {
+      padding: 0 30px;
+    }
+    .how-work-step {
+      .work-box {
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
+    }
   }
 }
 

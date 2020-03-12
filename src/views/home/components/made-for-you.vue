@@ -2,9 +2,11 @@
   <div class="made-for-product">
     <div class="section-title">
       <h2>在售商品</h2>
-      <p>江南、江南、江南商品厂倒闭、倒闭了，以前100元、200元，现在统统、统统超低价、低价出售，大力折扣进行中...</p>
+      <p>
+        江南、江南、江南商品厂倒闭、倒闭了，以前100元、200元，现在统统、统统超低价、低价出售，大力折扣进行中...
+      </p>
     </div>
-    <el-row>
+    <el-row :gutter="30">
       <el-col
         :key="food.id"
         :lg="6"
@@ -19,7 +21,9 @@
       </el-col>
     </el-row>
     <div class="product-btn">
-        <el-button type="success" @click="$message.success(`功能开发中`)">加载更多</el-button>
+      <el-button type="success" @click="$message.success(`功能开发中`)"
+        >加载更多</el-button
+      >
     </div>
   </div>
 </template>
@@ -38,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    apis.queryRecmmends({pageStart: 0, pageSize: 20}).then(resp => {
+    apis.queryRecmmends({ pageStart: 0, pageSize: 20 }).then((resp) => {
       this.$store.commit('set-commodities', resp.data);
     });
   }
@@ -48,8 +52,6 @@ export default {
 <style lang="less">
 .made-for-product {
   .shop-bg-container {
-    padding-left: 15px;
-    padding-right: 15px;
     margin-bottom: 30px;
   }
 }

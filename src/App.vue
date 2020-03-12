@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <app-nav></app-nav>
+    <component :is="$store.state.isH5 ? `h5-nav` : `app-nav`"></component>
     <router-view />
   </div>
 </template>
 
 <script>
 import Nav from '@/components/nav/main';
+import H5Nav from '@/components/nav/nav-h5';
 import Footer from '@/components/footer';
 export default {
   components: {
     'app-nav': Nav,
-    'app-footer': Footer
+    'app-footer': Footer,
+    'h5-nav': H5Nav
   },
   mounted() {
     this.$store.dispatch(`query-user-info`);
@@ -71,9 +73,12 @@ body {
       height: 166px;
     }
   }
-  .danger {
-    color: #f56c6c;
-    margin-left: 5px;
+  .el-card {
+    border: none;
   }
+}
+.danger {
+  color: #f56c6c;
+  margin-left: 5px;
 }
 </style>

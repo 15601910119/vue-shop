@@ -1,19 +1,15 @@
 <template>
   <el-card class="commodity-container">
     <div class="product-img-wrap">
-      <img
-        :src="data.image"
-        class="product-img"
-      >
-      <span
-        @click="onGotoDetail(data)"
-        class="quick-view"
-      >商品详情</span>
+      <scale-box>
+        <img :src="data.image" class="product-img" />
+      </scale-box>
+      <span @click="onGotoDetail(data)" class="quick-view">商品详情</span>
     </div>
     <div class="product-content-wrap">
       <div class="product-text">
-        <p class="product-name">{{data.name}}</p>
-        <p class="product-info">库存：{{data.inventory}}个</p>
+        <p class="product-name">{{ data.name }}</p>
+        <p class="product-info">库存：{{ data.inventory }}个</p>
       </div>
 
       <div class="product-action">
@@ -23,12 +19,13 @@
             @click="onAddToCart(data)"
             class="add-to-cart"
             javascript="void(0);"
-          >加入购物车</a>
+            >加入购物车</a
+          >
           <price :value="data.discounted || data.price"></price>
         </div>
         <div class="add-wishlist">
           <i
-            :class="['el-icon-star-off', {active: isActive}]"
+            :class="['el-icon-star-off', { active: isActive }]"
             @click="$store.commit('add-to-collect', data)"
           ></i>
         </div>
@@ -58,13 +55,13 @@ export default {
   },
   methods: {
     onAddToCart(data) {
-      this.$store.dispatch(`add-to-cart-store`, data).then(resp => {
+      this.$store.dispatch(`add-to-cart-store`, data).then((resp) => {
         this.$message.success(`添加成功`);
       });
     },
     onGotoDetail(data) {
       this.$router.push({
-        path: '/view/commodity/' + data.id,
+        path: '/view/commodity/' + data.id
       });
     }
   }
@@ -99,14 +96,8 @@ export default {
 }
 .product-img-wrap {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 235px;
-  overflow: hidden;
-
   .product-img {
-    width: 100%;
+    max-width: 100%;
     transition: 0.4s ease-in-out;
   }
   .quick-view {
@@ -123,6 +114,7 @@ export default {
     line-height: 40px;
     font-weight: 600;
     cursor: pointer;
+    z-index: 11;
   }
 }
 .product-content-wrap {

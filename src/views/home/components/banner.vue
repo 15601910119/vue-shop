@@ -108,6 +108,7 @@ export default {
     background-size: contain;
     background-repeat: no-repeat;
     background-color: #ccc;
+    background-size: cover;
     height: 100%;
     aside {
       h1 {

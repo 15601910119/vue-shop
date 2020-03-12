@@ -1,12 +1,13 @@
 <template>
   <div class="banner">
-    <h2>{{title}}</h2>
+    <h2>{{ title }}</h2>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item
         :key="route.path"
         :to="route.path && { path: route.path }"
         v-for="route in routes"
-      >{{route.name}}</el-breadcrumb-item>
+        >{{ route.name }}</el-breadcrumb-item
+      >
     </el-breadcrumb>
   </div>
 </template>
@@ -23,7 +24,7 @@ export default {
   background-image: url('http://assets.xvivx.online/static/banner.png');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 450px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;

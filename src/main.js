@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import ElementUI from 'element-ui';
+import ScaleBox from './components/scale-box';
 
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/reset.css';
@@ -19,6 +20,7 @@ Vue.filter(`toTime`, function(ts) {
 
 Vue.config.productionTip = false;
 
+Vue.component(`scale-box`, ScaleBox);
 Vue.use(ElementUI);
 
 window.addEventListener(`unhandledrejection`, function(event) {

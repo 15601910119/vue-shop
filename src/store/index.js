@@ -12,7 +12,8 @@ export default new Vuex.Store({
     carts: [],
     commodities: [],
     userInfo: {},
-    todos: []
+    todos: [],
+    isH5: document.body.clientWidth < 600
   },
 
   mutations: {

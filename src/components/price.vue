@@ -1,9 +1,8 @@
 <template>
   <div :class="['price', type]">
-    <span class="int">{{number.int}}</span>
+    <span class="int">{{ number.int }}</span>
     <span>.</span>
-    <span class="decimal">{{number.decimal}}</span>
-    <span>元</span>
+    <span class="decimal">{{ number.decimal }}</span>
   </div>
 </template>
 <script>
@@ -30,16 +29,12 @@ export default {
   font-size: 14px;
   line-height: 1;
   margin-right: 10px;
-  .int {
-    font-size: 18px;
-    font-weight: 600;
-  }
+  font-size: 16px;
+  font-weight: 600;
   &.line {
     position: relative;
-    .int {
-      font-size: 14px;
-      font-weight: normal;
-    }
+    font-size: 14px;
+    font-weight: normal;
 
     text-decoration: line-through;
   }
