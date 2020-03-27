@@ -7,7 +7,15 @@
         src="http://assets.xvivx.online/static/logo.png"
         alt="LOGO"
       />
-      <el-avatar :src="userInfo.avatar" icon="el-icon-user-solid"></el-avatar>
+      <el-avatar
+        @click.native="onGotoProfile"
+        v-if="userInfo.username"
+        :src="userInfo.avatar"
+        icon="el-icon-user-solid"
+      ></el-avatar>
+      <router-link class="login-href" v-else :to="{ name: `login` }"
+        >登录</router-link
+      >
     </div>
     <transition name="el-zoom-in-top">
       <div v-show="active" class="transition-route">
@@ -44,6 +52,13 @@ export default {
   },
 
   methods: {
+    onGotoProfile() {
+      if (this.name !== `profile-info`) {
+        this.$router.push({
+          name: `profile-info`
+        });
+      }
+    },
     onGotoRoute(name) {
       this.setActive();
       if (this.$route.name !== name) {
@@ -81,6 +96,9 @@ export default {
     .logo {
       height: 40px;
       overflow: hidden;
+    }
+    .login-href {
+      color: #fff;
     }
   }
   .transition-route {

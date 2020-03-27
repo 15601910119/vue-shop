@@ -73,9 +73,6 @@ body {
       height: 166px;
     }
   }
-  .el-card {
-    border: none;
-  }
 }
 .danger {
   color: #f56c6c;

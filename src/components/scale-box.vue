@@ -1,6 +1,6 @@
 <template>
-  <div class="scale-box" :style="{'padding-top': paddingTop}">
-    <div class="flex-center">
+  <div class="scale-box" :style="style">
+    <div class="box-content">
       <slot></slot>
     </div>
   </div>
@@ -12,15 +12,26 @@ export default {
     scale: {
       type: String,
       default: `1:1`
-    }
+    },
+    image: {
+      type: String,
+      default: ''
+    },
   },
   computed: {
-    paddingTop() {
+    style() {
       var [w, h] = this.scale.split(`:`) || [];
+      var style = {};
 
       if (w && h) {
-        return (h / w) * 100 + `%`;
+        style['padding-top'] = (h / w) * 100 + `%`;
       }
+
+      if (this.image) {
+        style['background-image'] = `url(${this.image})`;
+      }
+
+      return style;
     }
   }
 };
@@ -29,7 +40,10 @@ export default {
 <style lang="less" scoped>
 .scale-box {
   position: relative;
-  .flex-center {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  .box-content {
     position: absolute;
     top: 0;
     left: 0;

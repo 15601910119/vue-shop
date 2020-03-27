@@ -1,15 +1,14 @@
 <template>
-  <el-card class="commodity-container">
+  <el-card class="commodity-container" shadow="hover">
     <div class="product-img-wrap">
-      <scale-box>
-        <img :src="data.image" class="product-img" />
+      <scale-box :image="data.image">
       </scale-box>
       <span @click="onGotoDetail(data)" class="quick-view">商品详情</span>
     </div>
     <div class="product-content-wrap">
       <div class="product-text">
         <p class="product-name">{{ data.name }}</p>
-        <p class="product-info">库存：{{ data.inventory }}个</p>
+        <p class="product-info">销量 {{ data.sales || 0 }}</p>
       </div>
 
       <div class="product-action">

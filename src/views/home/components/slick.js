@@ -10,6 +10,7 @@ export default function(selector) {
       pauseOnHover: false,
       slidesToShow: 4,
       slidesToScroll: 1,
+      centerMode: window.screen.width < 600,
       responsive: [
         {
           breakpoint: 1600,

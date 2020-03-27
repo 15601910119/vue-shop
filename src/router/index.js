@@ -164,7 +164,6 @@ const routes = [
             /* webpackChunkName: "banners" */ '../views/manage/banners.vue'
           )
       },
-
     ]
   },
   {

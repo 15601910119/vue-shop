@@ -86,7 +86,7 @@ export default {
       }
     }
     .slick-slide {
-      padding: 0 10px;
+      padding: 10px;
     }
     .el-card {
       width: 265px;

@@ -2,7 +2,9 @@
   <div class="shop-categories">
     <div class="section-title">
       <h2>在线品牌</h2>
-      <p>江南、江南、江南商品厂倒闭、倒闭了，以前100元、200元，现在统统、统统超低价、低价出售，大力折扣进行中...</p>
+      <p>
+        江南、江南、江南商品厂倒闭、倒闭了，以前100元、200元，现在统统、统统超低价、低价出售，大力折扣进行中...
+      </p>
     </div>
     <el-row :gutter="30">
       <el-col
@@ -16,12 +18,8 @@
         v-for="shop in shops"
       >
         <el-card>
-          <div class="img-wrapper">
-            <img :src="shop.image">
-          </div>
-          <div class="shop-name">
-            <span>{{shop.name}}</span>
-          </div>
+          <scale-box :image="shop.image"></scale-box>
+          <div class="shop-name">{{ shop.name }}</div>
         </el-card>
       </el-col>
     </el-row>
@@ -37,7 +35,7 @@ export default {
     };
   },
   mounted() {
-    apis.queryCategoreis().then(resp => {
+    apis.queryCategoreis().then((resp) => {
       this.shops = resp.data;
     });
   }
@@ -62,14 +60,12 @@ export default {
     }
     .shop-name {
       text-align: center;
-      span {
-        transition: 0.4s;
-      }
-      span:hover {
+      line-height: 2;
+      transition: 0.4s;
+      &:hover {
         color: #3dca79;
       }
     }
   }
 }
 </style>
-

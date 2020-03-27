@@ -1,6 +1,9 @@
 <template>
-  <div class="banner">
-    <h2>{{ title }}</h2>
+  <scale-box
+    class="breadcrumb breadcrumb-container"
+    image="http://assets.xvivx.online/static/banner.png"
+    scale="5:1"
+  >
     <el-breadcrumb separator="/">
       <el-breadcrumb-item
         :key="route.path"
@@ -9,7 +12,7 @@
         >{{ route.name }}</el-breadcrumb-item
       >
     </el-breadcrumb>
-  </div>
+  </scale-box>
 </template>
 <script>
 export default {
@@ -20,21 +23,13 @@ export default {
 };
 </script>
 <style lang="less">
-.banner {
-  background-image: url('http://assets.xvivx.online/static/banner.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.breadcrumb.breadcrumb-container {
   color: white;
-  h2 {
-    margin-bottom: 15px;
-    font-size: 45px;
-    line-height: 1.4;
-    margin-top: 0;
+  background-size: cover;
+  .box-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .el-breadcrumb__inner {
     font-size: 16px;
